@@ -1,15 +1,15 @@
-#include "../include/renderer.h"
+#include "internal/renderer.h"
 
 #include <filesystem>
 
-#include "../include/window.h"
+#include "internal/window.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-#include "textures.h"
+#include "internal/textures.h"
 
 namespace Renderer {
 
@@ -96,7 +96,7 @@ namespace Renderer {
         glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,1, 1,0,GL_RGBA,GL_UNSIGNED_BYTE, white);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        pixelText = makeTexture(pixelTextPath);
+        pixelText = Texture::makeTexture(pixelTextPath);
 
         // set up vertex array with fixed capacity:
         // triangle: 3 vertices, 3 array slots

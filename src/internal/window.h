@@ -6,7 +6,6 @@
 
 namespace Window {
     void init(int size, std::string windowName);
-    GLFWwindow* getWindow();
     void beginFrame();
     void endFrame();
     void frameRate(int frameRate);

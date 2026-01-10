@@ -1,11 +1,10 @@
-#include "../include/window.h"
-#include "../include/input.h"
+#include "internal/window.h"
+#include "internal/input.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <thread>
 #include <chrono>
-
-#include "../include/renderer.h"
+#include "internal/renderer.h"
 
 using timeStamp = std::chrono::high_resolution_clock;
 using duration = std::chrono::duration<double>;
@@ -15,11 +14,6 @@ namespace Window {
     static GLFWwindow* window = nullptr;
     static auto timePerFrame = duration(1.0 / 60.0);
     static timeStamp::time_point nextFrameTime = timeStamp::now();
-
-    // allow other parts of the program to retrieve window pointer
-    GLFWwindow* getWindow() {
-        return window;
-    }
 
     // tells OpenGL where screen is upon resize
     void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -86,7 +80,8 @@ namespace Window {
     void beginFrame() {
         glClearColor(0.f, 0.f, 0.f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT);
-        Input::update();
+        glfwGetCursorPos(window, &Input::mouseXPos, &Input::mouseYPos);
+        glfwPollEvents();
     }
 
     // resets vertices and swaps the buffers; call at the end of rendering loop

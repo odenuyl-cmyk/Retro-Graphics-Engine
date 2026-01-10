@@ -14,6 +14,7 @@ add_library(Engine STATIC
         src/draw.cpp
         src/input.cpp
         src/textures.cpp
+        src/engine.cpp
 )
 
 target_include_directories(Engine PUBLIC include)
