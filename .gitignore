@@ -1,0 +1,51 @@
+# =========================
+# Build output
+# =========================
+build/
+cmake-build-*/
+bin/
+out/
+
+# =========================
+# CMake generated files
+# =========================
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# =========================
+# Compiled binaries / libs
+# =========================
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# =========================
+# IDE / editor files
+# =========================
+.vscode/
+.idea/
+.vs/
+
+# CLion
+cmake-build-debug/
+cmake-build-release/
+
+# =========================
+# OS junk
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs / temp
+# =========================
+*.log
+*.tmp
