@@ -24,37 +24,21 @@ namespace Renderer {
     static unsigned int currentTexture = 0;
     static unsigned int defaultTexture = 0;
     static unsigned int pixelText = 0;
-    static std::string pixelPath = "C:/Users/toogo/CLionProjects/Graphics_Engine/assets/fonts/pixeltextmap.png";
+    static std::string pixelTextPath =  "assets/fonts/pixeltextmap.png";
+    static std::string vertexShaderPath = "assets/shaders/vertex.shader";
+    static std::string fragmentShaderPath = "assets/shaders/fragment.shader";
 
     // create vertex/fragment shaders from another file
-    struct ShaderProgramSource {
-        std::string vertexSource;
-        std::string fragmentSource;
-    };
-
-    static ShaderProgramSource parseShader(const std::string& filePath) {
+    static std::string shaderFromFile(const std::string& filePath) {
         std::ifstream stream(filePath);
-
-        enum class ShaderType {
-            NONE = -1, VERTEX = 0, FRAGMENT = 1
-        };
-
         std::string line;
-        std::stringstream ss[2];
-        ShaderType type = ShaderType::NONE;
+        std::string result;
+
         while (std::getline(stream, line)) {
-            if (line.find("#shader") != std::string::npos) {
-                if (line.find("vertex") != std::string::npos) {
-                    type = ShaderType::VERTEX;
-                } else if (line.find("fragment") != std::string::npos) {
-                    type = ShaderType::FRAGMENT;
-                }
-            } else if (type != ShaderType::NONE) {
-                ss[(int) type] << line << '\n';
-            }
+            result += line + "\n";
         }
 
-        return {ss[0].str(), ss[1].str()};
+        return result;
     }
 
     static unsigned int compileShader(unsigned int type, const std::string& source) {
@@ -98,8 +82,9 @@ namespace Renderer {
     }
 
     void init() {
-        ShaderProgramSource source = parseShader("C:/Users/toogo/CLionProjects/Graphics_Engine/assets/shaders/vertex_fragment.shader");
-        shaderProgram = createShader(source.vertexSource, source.fragmentSource);
+        std::string vertexSource = shaderFromFile(vertexShaderPath);
+        std::string fragmentSource = shaderFromFile(fragmentShaderPath);
+        shaderProgram = createShader(vertexSource, fragmentSource);
 
         // set default texture and allow alpha channel to work for opacity logic
         glEnable(GL_BLEND);
@@ -111,7 +96,7 @@ namespace Renderer {
         glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,1, 1,0,GL_RGBA,GL_UNSIGNED_BYTE, white);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        pixelText = makeTexture(pixelPath);
+        pixelText = makeTexture(pixelTextPath);
 
         // set up vertex array with fixed capacity:
         // triangle: 3 vertices, 3 array slots
@@ -171,7 +156,7 @@ namespace Renderer {
         makeImage(pixelText, v1, v2, v3, v4);
     }
 
-    // called when frame ends or texture changes; draws everything in the VAO
+    // called when frame ends or texture changes; draws everything in the VAO and resets it
     void render()
     {
         if (vertexCount == 0) return;
@@ -182,8 +167,8 @@ namespace Renderer {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, currentTexture);
 
-        int location = glGetUniformLocation(shaderProgram, "uTexture");
-        glUniform1i(location, 0);
+        const int uTexturelocation = glGetUniformLocation(shaderProgram, "uTexture");
+        glUniform1i(uTexturelocation, 0);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 

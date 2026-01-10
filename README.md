@@ -37,7 +37,9 @@ Designed for learning, experimentation, and small projects such as simulations, 
 1. Create a `.cpp`file with a main function and make sure to `#include engine.h`
         
 
-2. initialize the library with `init(int width, int height)`
+2. initialize the window with `Window::init(int width, std::string name)`
+
+
 
 
 
