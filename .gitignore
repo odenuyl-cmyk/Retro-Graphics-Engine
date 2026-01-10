@@ -37,6 +37,3 @@ Thumbs.db
 # Logs / temp
 *.log
 *.tmp
-
-# Testing files
-test.cpp
