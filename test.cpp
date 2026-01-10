@@ -16,10 +16,7 @@ int main() {
     float fps = 10.0f;
     Window::frameRate(fps);
 
-    std::string p = "C:/Users/toogo/CLionProjects/Graphics_Engine/assets/fonts/pixeltextmap.png";
-    unsigned int textmap = makeTexture(p);
-
-    std::string g = "C:/Users/toogo/CLionProjects/Graphics_Engine/assets/textures/crab.png";
+    std::string g = "assets/textures/crab.png";
     unsigned int crabImage = makeTexture(g);
 
     //std::string text = "FPS: 30";
@@ -49,7 +46,7 @@ int main() {
         drawText(text, .5, .8, 20, YELLOW);
         drawText("GAME OVER", .5, .5, 100, GREEN);
 
-        drawImage(crabImage, 0, 0, .5, .5, rgb(90, 170, 200, 25));
+        drawImage(crabImage, 0, 0, .5, .5, rgb(90, 170, 200, 205));
 
         std::cout << Input::mouseX() << " " << Input::mouseY() << std::endl;
 
