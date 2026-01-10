@@ -1,23 +1,17 @@
-# =========================
 # Build output
-# =========================
 build/
 cmake-build-*/
 bin/
 out/
 
-# =========================
 # CMake generated files
-# =========================
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
 compile_commands.json
 
-# =========================
 # Compiled binaries / libs
-# =========================
 *.exe
 *.out
 *.app
@@ -27,9 +21,7 @@ compile_commands.json
 *.a
 *.lib
 
-# =========================
 # IDE / editor files
-# =========================
 .vscode/
 .idea/
 .vs/
@@ -38,14 +30,13 @@ compile_commands.json
 cmake-build-debug/
 cmake-build-release/
 
-# =========================
-# OS junk
-# =========================
+# OS
 .DS_Store
 Thumbs.db
 
-# =========================
 # Logs / temp
-# =========================
 *.log
 *.tmp
+
+# Testing files
+test.cpp
