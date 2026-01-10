@@ -1,72 +1,23 @@
 #include <engine.h>
+#include "snake_helpers.h"
 #include <deque>
 #include <unordered_set>
 #include <random>
 
 using namespace std;
 
-struct Point {
-    int x;
-    int y;
-
-    bool operator==(const Point& other) const {
-        return x == other.x && y == other.y;
-    }
-};
-
-struct PointHash {
-    size_t operator()(const Point& p) const {
-        return (p.x * 73856093) ^ (p.y * 19349663);
-    }
-};
-
-Point randomApple(const unordered_set<Point, PointHash>& occupied) {
-    static random_device rd;
-    static mt19937 gen(rd());
-    static uniform_int_distribution<int> dist(0, 24);
-
-    Point apple;
-
-    do {
-        apple.x = dist(gen);
-        apple.y = dist(gen)%22;
-    } while (occupied.contains(apple)); // C++20
-
-    return apple;
-}
-
 int main() {
     Window::init(1000, "Snake Game");
     Window::frameRate(140);
 
-    deque<Point> points;
-    unordered_set<Point, PointHash> pointsSet;
-
-    enum direction { UP, DOWN, LEFT, RIGHT };
-    direction dir = RIGHT;
-    bool dirSelected = false;
-
-    float step = 0.04;
-    direction prevMove = RIGHT;
-
-    points.push_back({8, 10});
-    pointsSet.insert({8, 10});
-    points.push_back({9, 10});
-    pointsSet.insert({9, 10});
-    points.push_back({10, 10});
-    pointsSet.insert({10, 10});
-
+    initSnakeGame();
     Point apple = randomApple(pointsSet);
-
-
-    int x = 10;
-    int y = 10;
-
     int counter = 0;
+
+    auto appleImage = makeTexture("assets/textures/apple.png");
 
     while (!Window::shouldClose()) {
         Window::beginFrame();
-
 
         if (Input::keyHeld(Key::W) && dir != DOWN && prevMove != DOWN) {
             dir = UP;
@@ -120,10 +71,10 @@ int main() {
         }
 
         for (Point p : points) {
-            drawRect(p.x*step, p.y*step, step, step, RED);
+            drawRect(p.x*step, p.y*step, step, step, GREEN);
         }
         
-        drawRect(apple.x*step, apple.y*step, step, step, GREEN);
+        drawImage(appleImage, apple.x*step, apple.y*step, step, step);
         string scoreText = "Score: " + to_string(points.size() - 3);
         string resettext = "Resets: " + to_string(0);
         drawText("Eat apples to grow!", 0.25, 0.95, 20, YELLOW);

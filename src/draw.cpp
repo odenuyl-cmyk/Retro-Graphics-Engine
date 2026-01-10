@@ -44,6 +44,9 @@ void drawRect(float x1, float y1, float width, float height, rgb_t color) {
 }
 
 void drawImage(unsigned int textureID, float x1, float y1, float width, float height, rgb_t tint) {
+    width *= 2;
+    height *= 2;
+
     float x = -1.0f + 2*x1;
     float y = 1.0f - 2*y1 - height;
     

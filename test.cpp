@@ -13,7 +13,7 @@ int main() {
     //std::cin >> screenSize;
     int screenSize = 1000;
     Window::init(screenSize, "Test");
-    float fps = 10.0f;
+    float fps = 144.0f;
     Window::frameRate(fps);
 
     std::string g = "assets/textures/crab.png";
@@ -47,8 +47,7 @@ int main() {
         drawText("GAME OVER", .5, .5, 100, GREEN);
 
         drawImage(crabImage, 0, 0, .5, .5, rgb(90, 170, 200, 205));
-
-        std::cout << Input::mouseX() << " " << Input::mouseY() << std::endl;
+        //std::cout << Input::mouseX() << " " << Input::mouseY() << std::endl;
 
 
         Window::endFrame();

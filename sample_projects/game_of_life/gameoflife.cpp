@@ -8,15 +8,14 @@ using namespace Window;
 using namespace Input;
 
 int main() {
-    const int screenWidth = 800;
-    const int screenHeight = 800;
+    const int screenSize = 800;
     const float wStep = 1.0f / float(cols);
     const float hStep = 1.0f / float(rows);
     frameRate(144);
 
     initPixels(pixels);
     initPixels(copyPixels);
-    init(screenWidth, screenHeight);
+    init(screenSize, "Conway's Game of Life");
 
     bool paused = true;
     int generation = 0;
@@ -33,37 +32,35 @@ int main() {
             }
         }
 
-        if (keyPressed(KEY_SPACE)) {
+        if (Input::keyHeld(Key::Space)) {
             paused = false;
         }
 
-        if (keyPressed(KEY_ESCAPE)) {
+        if (Input::keyHeld(Key::Escape)) {
             break;
         }
 
-        if (0 <= mouseX() && mouseX() <= screenWidth && 0 <= mouseY() && mouseY() < screenHeight) {
-            if (mousePressed(0)) {
+        if (0 <= mouseX() && mouseX() <= screenSize && 0 <= mouseY() && mouseY() < screenSize) {
+            if (Input::mouseHeld(Mouse::Left)) {
                 paused = true;
                 frameRate(144);
-                int squareWidth = screenWidth / cols;
-                int squareHeight = screenHeight / rows;
-                int x = mouseX()/squareWidth;
-                int y = mouseY()/squareHeight;
+                int squareSize = screenSize / cols;
+                int x = mouseX()/squareSize;
+                int y = mouseY()/squareSize;
                 add(y*cols + x);
-            } else if (mousePressed(1)) {
+            } else if (Input::mouseHeld(Mouse::Right)) {
                 paused = true;
                 frameRate(144);
-                int squareWidth = screenWidth / cols;
-                int squareHeight = screenHeight / rows;
-                int x = mouseX()/squareWidth;
-                int y = mouseY()/squareHeight;
+                int squareSize = screenSize / cols;
+                int x = mouseX()/squareSize;
+                int y = mouseY()/squareSize;
                 remove(y*cols + x);
             }
         }
 
         std::string text = "Generation: " + std::to_string(generation);
         drawRect(0.035, .9, 0.325 + 0.02*int(log10(generation+1)), 0.06, GREY);
-        drawText(text, -0.9f, -0.9f, 1, GREEN);
+        drawText(text, .2, .917, 20, GREEN);
 
         if (!paused) {
             frameRate(10);
