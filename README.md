@@ -39,7 +39,7 @@ Designed for learning, experimentation, and small projects such as simulations, 
 
 2. initialize the window with `Window::init(int width, std::string name)`
 
-
+![crab.png](assets/textures/crab.png)
 
 
 
