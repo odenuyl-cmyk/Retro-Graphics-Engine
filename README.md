@@ -3,6 +3,8 @@
 A lightweight C++ graphics engine built from scratch using OpenGL.  
 Designed for learning, experimentation, and small projects such as simulations, cellular automata, and simple games.
 
+![snakegame.gif](assets/tutorial/snakegame.gif)
+
 ---
 
 ## Features
