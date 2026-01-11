@@ -1,4 +1,4 @@
-# Cellular Automata Graphics Engine (C++)
+# Retro Graphics Engine (C++)
 
 A lightweight C++ graphics engine built from scratch using OpenGL.  
 Designed for learning, experimentation, and small projects such as simulations, cellular automata, and simple games.
