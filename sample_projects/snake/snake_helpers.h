@@ -1,4 +1,6 @@
 #pragma once
+
+#include <engine.h>
 #include <unordered_set>
 #include <random>
 #include <deque>
@@ -24,6 +26,7 @@ inline int x;
 inline int y;
 inline direction dir;
 inline direction prevMove;
+inline int resets = 0;
 
 inline std::deque<Point> points;
 inline std::unordered_set<Point, PointHash> pointsSet;
@@ -31,3 +34,7 @@ inline std::unordered_set<Point, PointHash> pointsSet;
 Point randomApple(const std::unordered_set<Point, PointHash>& occupied);
 
 void initSnakeGame();
+
+void resetGame();
+
+void drawBoard();

@@ -8,15 +8,15 @@ Designed for learning, experimentation, and small projects such as simulations, 
 ## Features
 
 - Modern OpenGL (3.3+ core profile)
-- Batched 2D renderer (single draw call per frame)
+- Batched 2D renderer
 - Solid color and textured shapes
 - Multiple textures per frame
 - Simple window + input system
-- 2 sample cellular automata projects
+- 2 sample projects: Conway's Game of Life and Snake (Falling Sand WIP)
 - Minimal abstractions for ease of use
-- `include/engine` contains the **public API**
-- `src` contains **implementation details**
-- `sample_projects` contains standalone executables built on top of the engine
+- `include` contains the public API
+- `src` contains internal implementations
+- `sample_projects` contains standalone programs built with the engine
 
 ---
 
