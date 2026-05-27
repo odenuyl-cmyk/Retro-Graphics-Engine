@@ -58,7 +58,7 @@ int main() {
         }
 
         std::string text = "Generation: " + std::to_string(generation);
-        drawRect(0.035, .9, 0.325 + 0.02*int(log10(generation+1)), 0.06, Color::GREY);
+        drawRect(0.035 - 0.01*int(log10(generation+1)), .9, 0.325 + 0.02*int(log10(generation+1)), 0.06, Color::GREY);
         drawText(text, .2, .917, 20, Color::GREEN);
 
         if (!paused) {
